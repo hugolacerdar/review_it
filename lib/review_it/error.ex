@@ -16,4 +16,6 @@ defmodule ReviewIt.Error do
   def build_changeset_error(%Changeset{} = changeset) do
     build(:bad_request, changeset)
   end
+
+  def build_user_not_found_error, do: build(:not_found, "User not found")
 end
