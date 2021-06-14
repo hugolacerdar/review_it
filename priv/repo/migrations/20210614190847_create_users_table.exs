@@ -3,10 +3,10 @@ defmodule ReviewIt.Repo.Migrations.CreateUsersTable do
 
   def change do
     create table(:users) do
-      add :nickname, :string
-      add :email, :string
-      add :password_hash, :string
-      add :is_expert, :boolean
+      add :nickname, :string, null: false
+      add :email, :string, null: false
+      add :password_hash, :string, null: false
+      add :is_expert, :boolean, default: false
       add :picture_url, :string
 
       timestamps()
