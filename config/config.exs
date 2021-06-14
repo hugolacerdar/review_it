@@ -22,6 +22,10 @@ config :review_it, ReviewItWeb.Auth.Guardian,
   issuer: "review_it",
   secret_key: "9cVnUefPYB0z/SE4uC00G8MnLFRgqwLqNkTfwqkgzFu1LnMP6sBj2EC1wuTeVcU0"
 
+config :review_it, ReviewItWeb.Auth.Pipeline,
+  module: ReviewItWeb.Auth.Guardian,
+  error_handler: ReviewItWeb.Auth.ErrorHandler
+
 # ecto migrations config
 config :review_it, ReviewIt.Repo,
   migration_primary_key: [type: :binary_id],
