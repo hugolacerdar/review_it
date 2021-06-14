@@ -18,6 +18,12 @@ config :review_it, ReviewItWeb.Endpoint,
   pubsub_server: ReviewIt.PubSub,
   live_view: [signing_salt: "vBT3FR7t"]
 
+# ecto migrations config
+config :review_it, ReviewIt.Repo,
+  migration_primary_key: [type: :binary_id],
+  migration_foreign_key: [type: :binary_id],
+  migration_timestamps: [type: :utc_datetime]
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
