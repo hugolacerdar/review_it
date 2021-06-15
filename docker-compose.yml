@@ -12,6 +12,17 @@ services:
       - POSTGRES_PASSWORD=postgres
     volumes: 
       - db_data:/var/lib/postgresql/data
+  api:
+    build: .
+    container_name: review_it.api
+    depends_on:
+      - db
+    environment:
+      MIX_ENV: dev
+    ports:
+      - 4000:4000
+    volumes:
+      - .:/app
 
 volumes: 
   db_data:
