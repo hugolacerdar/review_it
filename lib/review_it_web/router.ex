@@ -10,6 +10,12 @@ defmodule ReviewItWeb.Router do
   end
 
   scope "/api", ReviewItWeb do
+    pipe_through [:api, :auth]
+
+    get "/users/:id", UsersController, :show
+  end
+
+  scope "/api", ReviewItWeb do
     pipe_through :api
 
     post "/sessions", SessionsController, :create
