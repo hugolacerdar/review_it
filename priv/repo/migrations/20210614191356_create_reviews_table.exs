@@ -6,7 +6,7 @@ defmodule ReviewIt.Repo.Migrations.CreateReviewsTable do
       add :user_id, references(:users, on_delete: :delete_all)
       add :post_id, references(:posts, on_delete: :delete_all)
       add :description, :text
-      add :sugestions, :text
+      add :suggestions, :text
       add :strengths, :text
       add :weakness, :text
 

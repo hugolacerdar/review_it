@@ -7,7 +7,7 @@ defmodule ReviewIt.Repo.Migrations.CreatePostsTable do
       add :description, :string
       add :code_url, :string
       add :creator_id, references(:users, on_delete: :delete_all)
-      add :reviwer_id, references(:users, on_delete: :delete_all)
+      add :reviewer_id, references(:users, on_delete: :delete_all)
 
       timestamps()
     end

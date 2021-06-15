@@ -3,10 +3,24 @@ defmodule ReviewItWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug ReviewItWeb.Plugs.UUIDValidator
+  end
+
+  pipeline :auth do
+    plug ReviewItWeb.Auth.Pipeline
+  end
+
+  scope "/api", ReviewItWeb do
+    pipe_through [:api, :auth]
+
+    get "/users/:id", UsersController, :show
   end
 
   scope "/api", ReviewItWeb do
     pipe_through :api
+
+    post "/sessions", SessionsController, :create
+    post "/users", UsersController, :create
   end
 
   # Enables LiveDashboard only for development
