@@ -3,6 +3,7 @@ defmodule ReviewItWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug ReviewItWeb.Plugs.UUIDValidator
   end
 
   pipeline :auth do
