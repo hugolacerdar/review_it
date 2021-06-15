@@ -61,4 +61,50 @@ defmodule ReviewItWeb.UsersControllerTest do
       assert expected_response == response
     end
   end
+
+  describe "show/2" do
+    setup %{conn: conn} do
+      %{id: id} = user = insert(:user)
+      {:ok, token, _claims} = Guardian.encode_and_sign(user)
+      conn = put_req_header(conn, "authorization", "Bearer #{token}")
+
+      {:ok, conn: conn, id: id}
+    end
+
+    test "When user exists, returns the user", %{conn: conn, id: id} do
+      # Act
+      response =
+        conn
+        |> get(Routes.users_path(conn, :show, id))
+        |> json_response(:ok)
+
+      # Assert
+      assert %{
+               "user" => %{
+                 "email" => "banana@mail.com",
+                 "id" => ^id,
+                 "inserted_at" => _inserted_at,
+                 "is_expert" => false,
+                 "nickname" => "Banana",
+                 "picture_url" => nil
+               }
+             } = response
+    end
+
+    test "When user not exists, returns an error", %{conn: conn} do
+      # Arrange
+      id = "e38317b6-f234-4bfe-84df-29f650f59aaa"
+
+      # Act
+      response =
+        conn
+        |> get(Routes.users_path(conn, :show, id))
+        |> json_response(:not_found)
+
+      # Assert
+      expected_response = %{"error" => "User not found"}
+
+      assert expected_response == response
+    end
+  end
 end
