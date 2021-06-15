@@ -5,6 +5,10 @@ defmodule ReviewItWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    plug ReviewItWeb.Auth.Pipeline
+  end
+
   scope "/api", ReviewItWeb do
     pipe_through :api
 
