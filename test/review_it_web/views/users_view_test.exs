@@ -28,4 +28,23 @@ defmodule ReviewItWeb.UsersViewTest do
              }
            } = response
   end
+
+  test "renders user.json" do
+    # Arrange
+    user = build(:user)
+
+    # Act
+    response = render(UsersView, "user.json", user: user)
+
+    # Assert
+    assert %{
+             user: %User{
+               email: "banana@mail.com",
+               id: _id,
+               is_expert: false,
+               nickname: "Banana",
+               picture_url: nil
+             }
+           } = response
+  end
 end
