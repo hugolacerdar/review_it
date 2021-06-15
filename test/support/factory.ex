@@ -11,6 +11,13 @@ defmodule ReviewIt.Factory do
     }
   end
 
+  def session_params_factory do
+    %{
+      "email" => "banana@mail.com",
+      "password" => "banana123"
+    }
+  end
+
   def user_factory do
     %User{
       id: "e38317b6-f234-4bfe-84df-29f650f59a06",
