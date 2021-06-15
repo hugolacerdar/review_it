@@ -7,6 +7,8 @@ defmodule ReviewItWeb.Auth.ErrorHandler do
   def auth_error(conn, {error, _reason}, _opts) do
     body = Jason.encode!(%{message: to_string(error)})
 
-    Conn.send_resp(conn, 401, body)
+    conn
+    |> Conn.put_resp_content_type("application/json")
+    |> Conn.send_resp(401, body)
   end
 end
