@@ -10,14 +10,14 @@ defmodule ReviewIt.Technology do
 
   @required_params [:name, :hex_color]
 
-  @derive {Jason.Encoder, only: [:name, :hex_color]}
+  @derive {Jason.Encoder, only: [:name, :hex_color, :id]}
 
   schema "technologies" do
     field :name, :string
     field :hex_color, :string
 
     many_to_many(:posts, Post, join_through: "posts_technologies")
-    many_to_many(:users, User, join_through: "users_technologies")
+    many_to_many(:experts, User, join_through: "users_technologies")
 
     timestamps()
   end
