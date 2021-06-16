@@ -2,7 +2,7 @@ defmodule ReviewItWeb.UsersViewTest do
   use ReviewItWeb.ConnCase, async: true
 
   import Phoenix.View
-  import ReviewIt.{Factory}
+  import ReviewIt.Factory
 
   alias ReviewIt.User
   alias ReviewItWeb.UsersView

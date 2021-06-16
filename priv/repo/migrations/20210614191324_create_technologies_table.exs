@@ -4,11 +4,12 @@ defmodule ReviewIt.Repo.Migrations.CreateTechnologiesTable do
   def change do
     create table(:technologies) do
       add :name, :string
-      add :icon_url, :string
+      add :hex_color, :string
 
       timestamps()
     end
 
-    create unique_index(:technologies, [:name, :icon_url])
+    create unique_index(:technologies, [:name])
+    create unique_index(:technologies, [:hex_color])
   end
 end

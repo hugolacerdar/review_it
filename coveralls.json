@@ -1,0 +1,16 @@
+{
+    "skip_files": [
+      "test/support",
+      "lib/review_it_web/channels/user_socket.ex",
+      "lib/review_it_web/views/error_helpers.ex",
+      "lib/review_it_web/router.ex",
+      "lib/review_it_web/gettext.ex",
+      "lib/review_it_web.ex",
+      "lib/review_it/repo.ex",
+      "lib/review_it/application.ex",
+      "lib/review_it_web/plugs/uuid_validator.ex",
+      "lib/review_it_web/endpoint.ex",
+      "lib/review_it_web/auth/pipeline.ex",
+      "lib/review_it_web/auth/error_handler.ex"
+    ]
+  }
