@@ -24,8 +24,8 @@ defmodule ReviewIt.Factory do
       "creator_id" => "f9b153f9-7bd8-4957-820f-f1d6570ec24e",
       "description" =>
         "This code is for the web app XPQTA and it is supposed to bring the RPD fowars",
-      "reviewer_id" => "8f71b12c-5fbf-4b3f-bb50-b95127c8a260",
-      "title" => "Please review the Business logic on Module XPTO"
+      "title" => "Please review the Business logic on Module XPTO",
+      "technologies" => ["7df1040f-3644-4142-a2d6-20c6b0c4ab90"]
     }
   end
 
