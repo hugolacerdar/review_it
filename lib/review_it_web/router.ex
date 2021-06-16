@@ -24,6 +24,7 @@ defmodule ReviewItWeb.Router do
   scope "/api", ReviewItWeb do
     pipe_through :api
 
+    get "/technologies", TechnologiesController, :index
     post "/sessions", SessionsController, :create
     post "/users", UsersController, :create
   end
