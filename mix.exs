@@ -54,7 +54,8 @@ defmodule ReviewIt.MixProject do
       {:excoveralls, "~> 0.10", only: :test},
       {:pbkdf2_elixir, "~> 1.3"},
       {:ex_machina, "~> 2.7.0", only: :test},
-      {:guardian, "~> 2.0"}
+      {:guardian, "~> 2.0"},
+      {:tesla, "~> 1.4.0"}
     ]
   end
 
