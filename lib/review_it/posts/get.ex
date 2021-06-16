@@ -8,7 +8,7 @@ defmodule ReviewIt.Posts.Get do
     result =
       query
       |> Repo.all()
-      |> Repo.preload(:author)
+      |> Repo.preload([:author, :technologies])
 
     {:ok, result}
   end
@@ -19,7 +19,7 @@ defmodule ReviewIt.Posts.Get do
     result =
       query
       |> Repo.all()
-      |> Repo.preload(:author)
+      |> Repo.preload([:author, :technologies])
 
     {:ok, result}
   end
