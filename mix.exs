@@ -67,9 +67,16 @@ defmodule ReviewIt.MixProject do
   defp aliases do
     [
       setup: ["deps.get", "ecto.setup"],
-      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
+      "ecto.setup": ecto_setup(),
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
     ]
+  end
+
+  defp ecto_setup do
+    case Mix.env() do
+      :test -> ["ecto.create", "ecto.migrate"]
+      :dev -> ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"]
+    end
   end
 end
