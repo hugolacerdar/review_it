@@ -10,6 +10,8 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
+alias ReviewIt.{Repo, Technology}
+
 %{hex_color: "#7ec728", name: "Node.js"} |> Technology.changeset() |> Repo.insert!()
 %{hex_color: "#f7df1e", name: "JavaScript"} |> Technology.changeset() |> Repo.insert!()
 %{hex_color: "#61dafb", name: "React"} |> Technology.changeset() |> Repo.insert!()
