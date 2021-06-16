@@ -8,6 +8,7 @@ defmodule ReviewIt do
   """
   alias ReviewIt.Posts.Create, as: PostCreate
   alias ReviewIt.Posts.Get, as: PostGet
+  alias ReviewIt.Technologies.Get, as: TechnologyGet
   alias ReviewIt.Users.Create, as: UserCreate
   alias ReviewIt.Users.Get, as: UserGet
 
@@ -18,4 +19,6 @@ defmodule ReviewIt do
   defdelegate create_post(params), to: PostCreate, as: :call
   defdelegate get_post_by_creator_id(id), to: PostGet, as: :by_creator_id
   defdelegate get_post_by_reviewer_id(id), to: PostGet, as: :by_reviewer_id
+
+  defdelegate get_all_technologies(), to: TechnologyGet, as: :all
 end
