@@ -1,7 +1,7 @@
 defmodule ReviewIt.Factory do
   use ExMachina.Ecto, repo: ReviewIt.Repo
 
-  alias ReviewIt.{Post, User}
+  alias ReviewIt.{Post, Technology, User}
 
   def user_params_factory do
     %{
@@ -50,6 +50,14 @@ defmodule ReviewIt.Factory do
       creator_id: "f9b153f9-7bd8-4957-820f-f1d6570ec24e",
       reviewer_id: "8f71b12c-5fbf-4b3f-bb50-b95127c8a260",
       inserted_at: "2021-06-15T18:41:52Z"
+    }
+  end
+
+  def technology_factory do
+    %Technology{
+      hex_color: "#325d87",
+      id: "7df1040f-3644-4142-a2d6-20c6b0c4ab90",
+      name: "PostgreSQL"
     }
   end
 end
