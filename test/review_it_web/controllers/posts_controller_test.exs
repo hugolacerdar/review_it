@@ -7,13 +7,13 @@ defmodule ReviewItWeb.PostsControllerTest do
 
   describe "create/2" do
     setup %{conn: conn} do
+      insert(:technology)
+
       %{id: id} =
         user =
         insert(:user, %{id: "f9b153f9-7bd8-4957-820f-f1d6570ec24e", email: "creator@mail.com"})
 
       {:ok, token, _claims} = Guardian.encode_and_sign(user)
-
-      insert(:user, %{id: "8f71b12c-5fbf-4b3f-bb50-b95127c8a260", email: "reviewer@mail.com"})
 
       conn = put_req_header(conn, "authorization", "Bearer #{token}")
 
@@ -39,8 +39,14 @@ defmodule ReviewItWeb.PostsControllerTest do
                  "description" =>
                    "This code is for the web app XPQTA and it is supposed to bring the RPD fowars",
                  "id" => _id,
-                 "reviewer_id" => "8f71b12c-5fbf-4b3f-bb50-b95127c8a260",
-                 "title" => "Please review the Business logic on Module XPTO"
+                 "title" => "Please review the Business logic on Module XPTO",
+                 "technologies" => [
+                   %{
+                     "hex_color" => "#325d87",
+                     "id" => "7df1040f-3644-4142-a2d6-20c6b0c4ab90",
+                     "name" => "PostgreSQL"
+                   }
+                 ]
                }
              } = response
     end
@@ -62,7 +68,7 @@ defmodule ReviewItWeb.PostsControllerTest do
 
     test "when there are any invalid id, returns an error", %{conn: conn} do
       # Arrange
-      params = build(:post_params, %{"creator_id" => "9c2deae6-d914-49bd-a696-dd0261afe90b"})
+      params = build(:post_params, %{"technologies" => ["9c2deae6-d914-49bd-a696-dd0261afe90b"]})
 
       # Act
       response =
@@ -71,7 +77,7 @@ defmodule ReviewItWeb.PostsControllerTest do
         |> json_response(:not_found)
 
       # Assert
-      expected_response = %{"error" => "User not found"}
+      expected_response = %{"error" => "Invalid technology id"}
       assert expected_response == response
     end
   end
