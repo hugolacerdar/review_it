@@ -11,6 +11,21 @@ defmodule ReviewItWeb.Validator do
     |> handle_validation()
   end
 
+  def check_uuid(list) do
+    error? =
+      Enum.any?(list, fn x ->
+        case Ecto.UUID.cast(x) do
+          :error -> true
+          _ -> false
+        end
+      end)
+
+    case error? do
+      false -> {:ok, list}
+      true -> {:error, Error.build(:bad_request, "Invalid technologies list")}
+    end
+  end
+
   defp handle_validation(%Changeset{valid?: true} = changeset) do
     {:ok, changeset.changes}
   end
