@@ -3,7 +3,7 @@ defmodule ReviewIt.Post do
 
   import Ecto.Changeset
 
-  alias ReviewIt.User
+  alias ReviewIt.{Technology, User}
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -21,7 +21,8 @@ defmodule ReviewIt.Post do
              :creator_id,
              :reviewer_id,
              :inserted_at,
-             :author
+             :author,
+             :technologies
            ]}
 
   schema "posts" do
@@ -32,14 +33,17 @@ defmodule ReviewIt.Post do
     belongs_to :author, User, foreign_key: :creator_id
     belongs_to :reviewer, User, foreign_key: :reviewer_id
 
+    many_to_many(:technologies, Technology, join_through: "posts_technologies")
+
     timestamps()
   end
 
-  def changeset(params, struct \\ %__MODULE__{}) do
+  def changeset(params, technologies, struct \\ %__MODULE__{}) do
     struct
     |> cast(params, @cast_params)
     |> validate_required(@required_params)
     |> validate_length(:title, min: 35, max: 100)
     |> validate_length(:description, min: 20, max: 320)
+    |> put_assoc(:technologies, technologies)
   end
 end
