@@ -23,7 +23,8 @@ defmodule ReviewIt.Users.CreateTest do
                 is_expert: false,
                 picture_url: nil,
                 github_url: "https://github.com/banana",
-                linkedin_url: "https://linkedin.com/in/banana"
+                linkedin_url: "https://linkedin.com/in/banana",
+                score: 0
               }} = response
     end
 

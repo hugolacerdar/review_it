@@ -27,7 +27,8 @@ defmodule ReviewItWeb.UsersControllerTest do
                  "nickname" => "Banana",
                  "picture_url" => nil,
                  "github_url" => "https://github.com/banana",
-                 "linkedin_url" => "https://linkedin.com/in/banana"
+                 "linkedin_url" => "https://linkedin.com/in/banana",
+                 "score" => 0
                }
              } = response
     end
@@ -90,7 +91,8 @@ defmodule ReviewItWeb.UsersControllerTest do
                  "nickname" => "Banana",
                  "picture_url" => nil,
                  "github_url" => nil,
-                 "linkedin_url" => nil
+                 "linkedin_url" => nil,
+                 "score" => 0
                }
              } = response
     end

@@ -10,6 +10,7 @@ defmodule ReviewIt.Repo.Migrations.CreateUsersTable do
       add :picture_url, :string
       add :github_url, :string
       add :linkedin_url, :string
+      add :score, :integer, default: 0
 
       timestamps()
     end
