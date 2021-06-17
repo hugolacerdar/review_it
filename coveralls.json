@@ -11,6 +11,8 @@
       "lib/review_it_web/plugs/uuid_validator.ex",
       "lib/review_it_web/endpoint.ex",
       "lib/review_it_web/auth/pipeline.ex",
-      "lib/review_it_web/auth/error_handler.ex"
+      "lib/review_it_web/auth/error_handler.ex",
+      "lib/review_it_web/telemetry.ex",
+      "lib/review_it/imgbb/behaviour.ex" 
     ]
   }
