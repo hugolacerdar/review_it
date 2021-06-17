@@ -5,7 +5,7 @@ defmodule ReviewItWeb.PostReviewersControllerTest do
 
   alias ReviewItWeb.Auth.Guardian
 
-  describe "show/2" do
+  describe "index/2" do
     setup %{conn: conn} do
       %{id: id} =
         user =
@@ -38,7 +38,7 @@ defmodule ReviewItWeb.PostReviewersControllerTest do
       # Act
       response =
         conn
-        |> get(Routes.post_reviewers_path(conn, :show, id))
+        |> get(Routes.post_reviewers_path(conn, :index, id))
         |> json_response(:ok)
 
       # Assert

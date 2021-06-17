@@ -17,8 +17,8 @@ defmodule ReviewItWeb.Router do
 
     post "/posts", PostsController, :create
 
-    get "/users/:id/posts", PostCreatorsController, :show
-    get "/users/:id/reviews", PostReviewersController, :show
+    get "/users/:id/posts", PostCreatorsController, :index
+    get "/users/:id/reviews", PostReviewersController, :index
   end
 
   scope "/api", ReviewItWeb do

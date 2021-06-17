@@ -50,13 +50,13 @@ defmodule ReviewItWeb.PostsViewTest do
            } = response
   end
 
-  test "renders show_all.json" do
+  test "renders index.json" do
     # Arrange
     post_1 = build(:post)
     post_2 = build(:post)
     result = [post_1, post_2]
     # Act
-    response = render(PostsView, "show_all.json", result: result)
+    response = render(PostsView, "index.json", result: result)
 
     # Assert
     assert %{

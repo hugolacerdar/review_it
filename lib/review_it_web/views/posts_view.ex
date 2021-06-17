@@ -10,5 +10,5 @@ defmodule ReviewItWeb.PostsView do
   end
 
   def render("post.json", %{post: %Post{} = post}), do: %{post: post}
-  def render("show_all.json", %{result: result}), do: %{result: result}
+  def render("index.json", %{result: result}), do: %{result: result}
 end
