@@ -6,6 +6,8 @@ defmodule ReviewIt.Error do
 
   defstruct @keys
 
+  @type t :: %__MODULE__{status: atom(), result: any()}
+
   def build(status, result) do
     %__MODULE__{
       status: status,

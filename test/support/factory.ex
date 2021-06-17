@@ -1,6 +1,8 @@
 defmodule ReviewIt.Factory do
   use ExMachina.Ecto, repo: ReviewIt.Repo
 
+  alias Plug.Upload
+  alias ReviewIt.Imgbb.Client.Response
   alias ReviewIt.{Post, Technology, User}
 
   def user_params_factory do
@@ -15,6 +17,20 @@ defmodule ReviewIt.Factory do
     %{
       "email" => "banana@mail.com",
       "password" => "banana123"
+    }
+  end
+
+  def image_file_factory do
+    %Upload{
+      content_type: "image/png",
+      filename: "image.png",
+      path: Path.join(File.cwd!(), "test/support/mocks/image.png")
+    }
+  end
+
+  def upload_response_factory do
+    %Response{
+      image_url: "https://some-url.com.br"
     }
   end
 
