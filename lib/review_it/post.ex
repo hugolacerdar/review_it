@@ -10,7 +10,7 @@ defmodule ReviewIt.Post do
   @timestamps_opts [type: :utc_datetime]
 
   @required_params [:title, :description, :code_url, :creator_id]
-  @cast_params [:reviewer_id | @required_params]
+  @cast_params [:star_review_id | @required_params]
 
   @derive {Jason.Encoder,
            only: [
@@ -19,19 +19,20 @@ defmodule ReviewIt.Post do
              :description,
              :code_url,
              :creator_id,
-             :reviewer_id,
+             :star_review_id,
              :inserted_at,
              :author,
-             :technologies
+             :technologies,
+             :star_review
            ]}
 
   schema "posts" do
-    field :title, :string
-    field :description, :string
-    field :code_url, :string
+    field(:title, :string)
+    field(:description, :string)
+    field(:code_url, :string)
 
-    belongs_to :author, User, foreign_key: :creator_id
-    belongs_to :reviewer, User, foreign_key: :reviewer_id
+    belongs_to(:author, User, foreign_key: :creator_id)
+    belongs_to(:star_review, User, foreign_key: :star_review_id)
 
     many_to_many(:technologies, Technology, join_through: "posts_technologies")
 
