@@ -9,4 +9,15 @@ defmodule ReviewItWeb.PostsValidator do
   def validate_create(_) do
     {:error, Error.build(:bad_request, "Missing technologies list")}
   end
+
+  def validate_index(params) do
+    types = %{
+      page: :integer,
+      size: :integer,
+      solved: :boolean,
+      technologies: {:array, Ecto.UUID}
+    }
+
+    Validator.validate(params, types, [])
+  end
 end
