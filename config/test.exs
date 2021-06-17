@@ -18,5 +18,8 @@ config :review_it, ReviewItWeb.Endpoint,
   http: [port: 4002],
   server: false
 
+# files controller config
+config :review_it, ReviewItWeb.FilesController, client: ReviewIt.Imgbb.ClientMock
+
 # Print only warnings and errors during test
 config :logger, level: :warn

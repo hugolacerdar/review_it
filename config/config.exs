@@ -35,6 +35,9 @@ config :review_it, ReviewIt.Repo,
 # imgbb image upload server config
 config :review_it, ReviewIt.Imgbb.Client, key: System.get_env("IMGBB_KEY")
 
+# files controller config
+config :review_it, ReviewItWeb.FilesController, client: ReviewIt.Imgbb.Client
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
