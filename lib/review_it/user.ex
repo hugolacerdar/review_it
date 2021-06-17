@@ -8,11 +8,29 @@ defmodule ReviewIt.User do
   @primary_key {:id, :binary_id, autogenerate: true}
   @timestamps_opts [type: :utc_datetime]
 
-  @cast_params [:nickname, :email, :password, :is_expert, :picture_url]
+  @cast_params [
+    :nickname,
+    :email,
+    :password,
+    :is_expert,
+    :picture_url,
+    :github_url,
+    :linkedin_url
+  ]
   @required_params [:nickname, :email]
   @required_params_with_password @required_params ++ [:password]
 
-  @derive {Jason.Encoder, only: [:id, :nickname, :email, :is_expert, :picture_url, :inserted_at]}
+  @derive {Jason.Encoder,
+           only: [
+             :id,
+             :nickname,
+             :email,
+             :is_expert,
+             :picture_url,
+             :github_url,
+             :linkedin_url,
+             :inserted_at
+           ]}
 
   schema "users" do
     field :nickname, :string
@@ -21,6 +39,8 @@ defmodule ReviewIt.User do
     field :password_hash, :string
     field :is_expert, :boolean, default: false
     field :picture_url, :string
+    field :github_url, :string
+    field :linkedin_url, :string
 
     timestamps()
   end
@@ -39,6 +59,8 @@ defmodule ReviewIt.User do
     |> validate_required(required_params)
     |> validate_length(:password, min: 6)
     |> validate_format(:email, ~r/@/)
+    |> validate_format(:github_url, ~r/^https:\/\/(www\.|)github.com\/.+/)
+    |> validate_format(:linkedin_url, ~r/^https:\/\/(www\.|)linkedin.com\/in\/.*/)
     |> unique_constraint([:email])
     |> put_password_hash()
   end

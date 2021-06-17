@@ -8,6 +8,8 @@ defmodule ReviewIt.Repo.Migrations.CreateUsersTable do
       add :password_hash, :string, null: false
       add :is_expert, :boolean, default: false
       add :picture_url, :string
+      add :github_url, :string
+      add :linkedin_url, :string
 
       timestamps()
     end

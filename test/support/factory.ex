@@ -9,7 +9,9 @@ defmodule ReviewIt.Factory do
     %{
       "nickname" => "Banana",
       "email" => "banana@mail.com",
-      "password" => "banana123"
+      "password" => "banana123",
+      "github_url" => "https://github.com/banana",
+      "linkedin_url" => "https://linkedin.com/in/banana"
     }
   end
 
