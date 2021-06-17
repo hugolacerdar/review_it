@@ -18,4 +18,13 @@ defmodule ReviewItWeb.PostsController do
       |> render("create.json", post: post)
     end
   end
+
+  def index(conn, params) do
+    with {:ok, validated_params} <- PostsValidator.validate_index(params),
+         {:ok, result} <- ReviewIt.get_all_posts(validated_params) do
+      conn
+      |> put_status(:ok)
+      |> render("index.json", result: result)
+    end
+  end
 end
