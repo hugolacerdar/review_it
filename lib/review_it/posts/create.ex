@@ -14,19 +14,14 @@ defmodule ReviewIt.Posts.Create do
       |> Repo.insert()
       |> handle_insert()
     else
-      {:error, _} -> {:error, Error.build_user_not_found_error()}
       %Changeset{valid?: false} = changeset -> {:error, Error.build_changeset_error(changeset)}
       false -> {:error, Error.build(:not_found, "Invalid technology id")}
     end
   end
 
   defp handle_insert({:ok, %Post{} = post}) do
-    post = Repo.preload(post, [:author, :technologies])
+    post = Repo.preload(post, [:author, :technologies, :star_review])
 
     {:ok, post}
-  end
-
-  defp handle_insert({:error, changeset}) do
-    {:error, Error.build_changeset_error(changeset)}
   end
 end
