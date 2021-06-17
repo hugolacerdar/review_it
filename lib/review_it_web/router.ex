@@ -18,13 +18,13 @@ defmodule ReviewItWeb.Router do
     post "/posts", PostsController, :create
 
     get "/users/:id/posts", PostCreatorsController, :index
-    get "/users/:id/reviews", PostReviewersController, :index
   end
 
   scope "/api", ReviewItWeb do
     pipe_through :api
 
     get "/technologies", TechnologiesController, :index
+    get "/posts", PostsController, :index
     post "/files", FilesController, :create
     post "/sessions", SessionsController, :create
     post "/users", UsersController, :create
