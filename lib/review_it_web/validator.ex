@@ -6,7 +6,7 @@ defmodule ReviewItWeb.Validator do
 
   def validate(params, types, required_keys) do
     {%{}, types}
-    |> cast(params, required_keys)
+    |> cast(params, Map.keys(types))
     |> validate_required(required_keys)
     |> handle_validation()
   end

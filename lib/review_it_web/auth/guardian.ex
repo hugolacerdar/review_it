@@ -20,8 +20,4 @@ defmodule ReviewItWeb.Auth.Guardian do
       _ -> {:error, Error.build(:unauthorized, "Please verify your credentials")}
     end
   end
-
-  def authenticate(_params) do
-    {:error, Error.build(:bad_request, "Invalid or missing params")}
-  end
 end

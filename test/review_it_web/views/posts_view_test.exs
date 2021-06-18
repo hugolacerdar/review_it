@@ -23,7 +23,7 @@ defmodule ReviewItWeb.PostsViewTest do
                description:
                  "This code is for the web app XPQTA and it is supposed to bring the RPD foward.",
                id: "a717fdb0-d334-4c4e-96d5-2ab58a0e8c70",
-               reviewer_id: "8f71b12c-5fbf-4b3f-bb50-b95127c8a260",
+               star_review_id: nil,
                title: "Please review the Business logic on Module XPTO"
              }
            } = response
@@ -44,7 +44,7 @@ defmodule ReviewItWeb.PostsViewTest do
                description:
                  "This code is for the web app XPQTA and it is supposed to bring the RPD foward.",
                id: "a717fdb0-d334-4c4e-96d5-2ab58a0e8c70",
-               reviewer_id: "8f71b12c-5fbf-4b3f-bb50-b95127c8a260",
+               star_review_id: nil,
                title: "Please review the Business logic on Module XPTO"
              }
            } = response
@@ -67,7 +67,7 @@ defmodule ReviewItWeb.PostsViewTest do
                  description:
                    "This code is for the web app XPQTA and it is supposed to bring the RPD foward.",
                  id: "a717fdb0-d334-4c4e-96d5-2ab58a0e8c70",
-                 reviewer_id: "8f71b12c-5fbf-4b3f-bb50-b95127c8a260",
+                 star_review_id: nil,
                  title: "Please review the Business logic on Module XPTO"
                },
                %Post{
@@ -76,7 +76,7 @@ defmodule ReviewItWeb.PostsViewTest do
                  description:
                    "This code is for the web app XPQTA and it is supposed to bring the RPD foward.",
                  id: "a717fdb0-d334-4c4e-96d5-2ab58a0e8c70",
-                 reviewer_id: "8f71b12c-5fbf-4b3f-bb50-b95127c8a260",
+                 star_review_id: nil,
                  title: "Please review the Business logic on Module XPTO"
                }
              ]
