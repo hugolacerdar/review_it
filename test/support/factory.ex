@@ -22,6 +22,17 @@ defmodule ReviewIt.Factory do
     }
   end
 
+  def review_params_factory do
+    %{
+      "description" => "this is a description",
+      "suggestions" => "this is a suggestions",
+      "strengths" => "this is a strengths",
+      "weakness" => "this is a weakness",
+      "post_id" => "a717fdb0-d334-4c4e-96d5-2ab58a0e8c70",
+      "user_id" => "8fc5d8bc-75e4-47a3-b412-b8cd17f5701a"
+    }
+  end
+
   def image_file_factory do
     %Upload{
       content_type: "image/png",
