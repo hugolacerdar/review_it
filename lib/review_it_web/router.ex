@@ -10,6 +10,10 @@ defmodule ReviewItWeb.Router do
     plug ReviewItWeb.Auth.Pipeline
   end
 
+  pipeline :expert do
+    plug ReviewItWeb.Plugs.ExpertAuthorization
+  end
+
   scope "/api", ReviewItWeb do
     pipe_through [:api, :auth]
 
@@ -18,6 +22,12 @@ defmodule ReviewItWeb.Router do
     post "/posts", PostsController, :create
 
     get "/users/:id/posts", PostCreatorsController, :index
+  end
+
+  scope "/api", ReviewItWeb do
+    pipe_through [:api, :auth, :expert]
+
+    post "/reviews", ReviewsController, :create
   end
 
   scope "/api", ReviewItWeb do
