@@ -15,9 +15,17 @@ defmodule ReviewItWeb.PostsValidator do
       page: :integer,
       size: :integer,
       solved: :boolean,
-      technologies: {:array, Ecto.UUID}
+      search_string: :string,
+      technologies: {:array, :string}
     }
 
-    Validator.validate(params, types, [])
+    with {:ok, changes} <- Validator.validate(params, types, []),
+         technologies <-
+           Map.get(params, "technologies", ["80769920-c141-4f6b-9dfa-33f4fe214155"]),
+         {:ok, _} <- Validator.check_uuid(technologies) do
+      {:ok, changes}
+    else
+      {:error, _} = error -> error
+    end
   end
 end
