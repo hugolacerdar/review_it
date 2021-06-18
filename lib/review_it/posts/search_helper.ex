@@ -12,12 +12,26 @@ defmodule ReviewIt.Posts.SearchHelper do
       }) do
     query =
       Post
-      |> search_string?(search_string)
-      |> solved?(solved)
+      |> preload([p], [:author, :star_review])
       |> technologies?(technologies)
+      |> solved?(solved)
+      |> search_string?(search_string)
+      |> distinct([p], p.id)
       |> paginate(page, size)
 
-    Repo.all(query) |> Repo.preload([:author, :technologies, :star_review])
+    Repo.all(query) |> Repo.preload(:technologies)
+  end
+
+  defp technologies?(query, technologies) do
+    case technologies do
+      [_head | _tail] ->
+        query
+        |> join(:left, [p], t in assoc(p, :technologies))
+        |> where([p, t], t.id in ^technologies)
+
+      _ ->
+        query
+    end
   end
 
   defp search_string?(query, search_string) do
@@ -27,7 +41,7 @@ defmodule ReviewIt.Posts.SearchHelper do
       true ->
         query
         |> where(
-          [p],
+          [p, t],
           like(
             fragment("lower(?)", p.title),
             ^"%#{search_string}%"
@@ -48,18 +62,6 @@ defmodule ReviewIt.Posts.SearchHelper do
       true -> query |> where([p], not is_nil(p.star_review_id))
       false -> query |> where([p], is_nil(p.star_review_id))
       nil -> query
-    end
-  end
-
-  defp technologies?(query, technologies) do
-    case technologies do
-      [_head | _tail] ->
-        query
-        |> join(:left, [p], t in assoc(p, :technologies))
-        |> where([p, t], t.id in ^technologies)
-
-      _ ->
-        query
     end
   end
 
