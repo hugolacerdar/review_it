@@ -3,14 +3,15 @@ defmodule ReviewIt.Posts.Get do
   alias ReviewIt.{Post, Repo}
   alias ReviewIt.Posts.SearchHelper
 
+  @default_params %{
+    :page => 1,
+    :size => 10,
+    :technologies => nil,
+    :solved => nil,
+    :search_string => ""
+  }
   def all(params) do
-    page = Map.get(params, :page, 1)
-    size = Map.get(params, :size, 10)
-
-    params =
-      params
-      |> Map.put_new(:page, page)
-      |> Map.put_new(:size, size)
+    params = Map.merge(@default_params, params)
 
     result = SearchHelper.filter(params)
 
