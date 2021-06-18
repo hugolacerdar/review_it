@@ -58,6 +58,17 @@ defmodule ReviewIt.Factory do
     }
   end
 
+  def user_expert_factory do
+    %User{
+      id: "8fc5d8bc-75e4-47a3-b412-b8cd17f5701a",
+      nickname: "Banana Expert",
+      email: "banana_expert@mail.com",
+      password_hash:
+        "$pbkdf2-sha512$160000$yRB9lvY8YZP08PbN4tCYKw$ISrRoQ9aZszXA2I5.Lo3mA7y7fVHdxRh268L/kpXZ7m.FWwADukvF8aJ/soTsSZZp92BnxY8NhAm1MhxUQWS0Q",
+      is_expert: true
+    }
+  end
+
   def post_factory do
     %Post{
       id: "a717fdb0-d334-4c4e-96d5-2ab58a0e8c70",
