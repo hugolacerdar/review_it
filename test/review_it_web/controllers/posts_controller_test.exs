@@ -160,7 +160,7 @@ defmodule ReviewItWeb.PostsControllerTest do
         id: "a603bb16-8974-4a3b-bcac-011ec3b8b19a"
       )
 
-      params = %{"technologies" => [mongodb_id]}
+      params = %{"technologies" => mongodb_id}
 
       # Act
       response =
@@ -220,7 +220,7 @@ defmodule ReviewItWeb.PostsControllerTest do
         id: "a603bb16-8974-4a3b-bcac-011ec3b8b19a"
       )
 
-      params = %{"technologies" => [mongodb_id], "solved" => false}
+      params = %{"technologies" => mongodb_id, "solved" => false}
 
       # Act
       response =
@@ -280,7 +280,7 @@ defmodule ReviewItWeb.PostsControllerTest do
         id: "a603bb16-8974-4a3b-bcac-011ec3b8b19a"
       )
 
-      params = %{"technologies" => [mongodb_id], "solved" => true}
+      params = %{"technologies" => mongodb_id, "solved" => true}
 
       # Act
       response =
@@ -295,7 +295,6 @@ defmodule ReviewItWeb.PostsControllerTest do
     test "when a solved equals to false is given on params map, returns the matching posts",
          %{
            conn: conn,
-           mongodb_id: mongodb_id,
            mongodb: mongodb,
            sql: sql
          } do
@@ -487,11 +486,8 @@ defmodule ReviewItWeb.PostsControllerTest do
       )
 
       params = %{
-        "technologies" => [
-          "a603bb16-8974-4a3b-bcac-011ec3b8b19a",
-          "invalid",
-          "a603bb16-8974-4a3b-bcac-011ec3b8b19a"
-        ]
+        "technologies" =>
+          "a603bb16-8974-4a3b-bcac-011ec3b8b19a,invalid,a603bb16-8974-4a3b-bcac-011ec3b8b19a"
       }
 
       # Act
