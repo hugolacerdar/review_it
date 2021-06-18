@@ -3,7 +3,7 @@ defmodule ReviewIt.Factory do
 
   alias Plug.Upload
   alias ReviewIt.Imgbb.Client.Response
-  alias ReviewIt.{Post, Technology, User}
+  alias ReviewIt.{Post, Review, Technology, User}
 
   def user_params_factory do
     %{
@@ -30,6 +30,18 @@ defmodule ReviewIt.Factory do
       "weakness" => "this is a weakness",
       "post_id" => "a717fdb0-d334-4c4e-96d5-2ab58a0e8c70",
       "user_id" => "8fc5d8bc-75e4-47a3-b412-b8cd17f5701a"
+    }
+  end
+
+  def review_factory do
+    %Review{
+      id: "3beb6a91-1580-455a-b377-13930f08565d",
+      description: "this is a description",
+      suggestions: "this is a suggestions",
+      strengths: "this is a strengths",
+      weakness: "this is a weakness",
+      post_id: "a717fdb0-d334-4c4e-96d5-2ab58a0e8c70",
+      user_id: "8fc5d8bc-75e4-47a3-b412-b8cd17f5701a"
     }
   end
 
