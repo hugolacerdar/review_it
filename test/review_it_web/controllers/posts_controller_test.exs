@@ -408,6 +408,102 @@ defmodule ReviewItWeb.PostsControllerTest do
       assert response == %{"result" => []}
     end
 
+    test "when a search string is given on parameters map, returns the matching posts considering the title and description fields",
+         %{
+           conn: conn,
+           mongodb: mongodb,
+           sql: sql
+         } do
+      # Arrange
+      insert(:post,
+        title: "I need help to get the right function for the mg module, more sp...",
+        technologies: [mongodb],
+        id: "29558bca-ff63-4dde-b8dd-175eee6e14df"
+      )
+
+      insert(:post,
+        title: "I need help to get the right module for the mg function, more sp...",
+        technologies: [sql],
+        id: "a603bb16-8974-4a3b-bcac-011ec3b8b19a"
+      )
+
+      params = %{"search_string" => "mg function"}
+
+      # Act
+      response =
+        conn
+        |> get(Routes.posts_path(conn, :index, params))
+        |> json_response(:ok)
+
+      # Assert
+      assert %{
+               "result" => [
+                 %{
+                   "author" => %{
+                     "email" => "banana@mail.com",
+                     "id" => "f9b153f9-7bd8-4957-820f-f1d6570ec24e",
+                     "is_expert" => false,
+                     "nickname" => "Banana",
+                     "picture_url" => nil
+                   },
+                   "code_url" => "www.codehub.com/12345ds2",
+                   "creator_id" => "f9b153f9-7bd8-4957-820f-f1d6570ec24e",
+                   "description" =>
+                     "This code is for the web app XPQTA and it is supposed to bring the RPD foward.",
+                   "id" => "a603bb16-8974-4a3b-bcac-011ec3b8b19a",
+                   "star_review" => nil,
+                   "star_review_id" => nil,
+                   "technologies" => [
+                     %{
+                       "hex_color" => "#325d87",
+                       "id" => "f16e20db-6ff8-424c-93d1-59b146abe758",
+                       "name" => "SQL"
+                     }
+                   ],
+                   "title" =>
+                     "I need help to get the right module for the mg function, more sp..."
+                 }
+               ]
+             } = response
+    end
+
+    test "when an an array of tecnologies with invalid ids is given on parameters map, returns an error",
+         %{
+           conn: conn,
+           mongodb: mongodb,
+           sql: sql
+         } do
+      # Arrange
+      insert(:post,
+        title: "I need help to get the right function for the mg module, more sp...",
+        technologies: [mongodb],
+        id: "29558bca-ff63-4dde-b8dd-175eee6e14df"
+      )
+
+      insert(:post,
+        title: "I need help to get the right module for the mg function, more sp...",
+        technologies: [sql],
+        id: "a603bb16-8974-4a3b-bcac-011ec3b8b19a"
+      )
+
+      params = %{
+        "technologies" => [
+          "a603bb16-8974-4a3b-bcac-011ec3b8b19a",
+          "invalid",
+          "a603bb16-8974-4a3b-bcac-011ec3b8b19a"
+        ]
+      }
+
+      # Act
+      response =
+        conn
+        |> get(Routes.posts_path(conn, :index, params))
+        |> json_response(:bad_request)
+
+      # Assert
+      assert response == %{"error" => "Invalid technologies list"}
+    end
+
     test "when a empty map is given, returns posts paginated by default values",
          %{
            conn: conn,
