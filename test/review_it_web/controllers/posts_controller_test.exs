@@ -62,7 +62,7 @@ defmodule ReviewItWeb.PostsControllerTest do
         |> json_response(:bad_request)
 
       # Assert
-      expected_response = %{"errors" => %{"title" => ["should be at least 35 character(s)"]}}
+      expected_response = %{"errors" => %{"title" => ["should be at least 10 character(s)"]}}
       assert expected_response == response
     end
 

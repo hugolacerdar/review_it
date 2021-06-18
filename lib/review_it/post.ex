@@ -43,7 +43,7 @@ defmodule ReviewIt.Post do
     struct
     |> cast(params, @cast_params)
     |> validate_required(@required_params)
-    |> validate_length(:title, min: 35, max: 100)
+    |> validate_length(:title, min: 10, max: 100)
     |> validate_length(:description, min: 20, max: 320)
     |> put_assoc(:technologies, technologies)
   end
