@@ -19,6 +19,8 @@ defmodule ReviewItWeb.PostsValidator do
       technologies: {:array, :string}
     }
 
+    params = parse_tech_string(params)
+
     with {:ok, changes} <- Validator.validate(params, types, []),
          technologies <-
            Map.get(params, "technologies", ["80769920-c141-4f6b-9dfa-33f4fe214155"]),
@@ -27,5 +29,16 @@ defmodule ReviewItWeb.PostsValidator do
     else
       {:error, _} = error -> error
     end
+  end
+
+  def parse_tech_string(params) do
+    case Map.get(params, "technologies", nil) |> is_nil() do
+      false -> Map.put(params, "technologies", to_list(params["technologies"]))
+      true -> params
+    end
+  end
+
+  def to_list(string) do
+    String.split(string, ",")
   end
 end
