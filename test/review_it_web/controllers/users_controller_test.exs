@@ -25,7 +25,10 @@ defmodule ReviewItWeb.UsersControllerTest do
                  "inserted_at" => _inserted_at,
                  "is_expert" => false,
                  "nickname" => "Banana",
-                 "picture_url" => nil
+                 "picture_url" => nil,
+                 "github_url" => "https://github.com/banana",
+                 "linkedin_url" => "https://linkedin.com/in/banana",
+                 "score" => 0
                }
              } = response
     end
@@ -86,7 +89,10 @@ defmodule ReviewItWeb.UsersControllerTest do
                  "inserted_at" => _inserted_at,
                  "is_expert" => false,
                  "nickname" => "Banana",
-                 "picture_url" => nil
+                 "picture_url" => nil,
+                 "github_url" => nil,
+                 "linkedin_url" => nil,
+                 "score" => 0
                }
              } = response
     end

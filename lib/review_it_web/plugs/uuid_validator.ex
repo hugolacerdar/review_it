@@ -9,6 +9,7 @@ defmodule ReviewItWeb.Plugs.UUIDValidator do
   def init(options), do: options
   # coveralls-ignore-stop
 
+  @impl true
   def call(%Conn{params: %{"id" => id}} = conn, _options) do
     case UUID.cast(id) do
       :error -> render_error(conn)

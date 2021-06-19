@@ -55,7 +55,7 @@ defmodule ReviewIt.Posts.CreateTest do
       # Assert
       assert {:error, %Error{status: :bad_request, result: changeset}} = response
 
-      expected_response = %{title: ["should be at least 35 character(s)"]}
+      expected_response = %{title: ["should be at least 10 character(s)"]}
 
       assert errors_on(changeset) == expected_response
     end

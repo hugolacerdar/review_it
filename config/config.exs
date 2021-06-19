@@ -38,6 +38,11 @@ config :review_it, ReviewIt.Imgbb.Client, key: System.get_env("IMGBB_KEY")
 # files controller config
 config :review_it, ReviewItWeb.FilesController, client: ReviewIt.Imgbb.Client
 
+# score points config
+config :review_it, :score,
+  review: 10,
+  star: 50
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

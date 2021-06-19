@@ -3,13 +3,15 @@ defmodule ReviewIt.Factory do
 
   alias Plug.Upload
   alias ReviewIt.Imgbb.Client.Response
-  alias ReviewIt.{Post, Technology, User}
+  alias ReviewIt.{Post, Review, Technology, User}
 
   def user_params_factory do
     %{
       "nickname" => "Banana",
       "email" => "banana@mail.com",
-      "password" => "banana123"
+      "password" => "banana123",
+      "github_url" => "https://github.com/banana",
+      "linkedin_url" => "https://linkedin.com/in/banana"
     }
   end
 
@@ -17,6 +19,29 @@ defmodule ReviewIt.Factory do
     %{
       "email" => "banana@mail.com",
       "password" => "banana123"
+    }
+  end
+
+  def review_params_factory do
+    %{
+      "description" => "this is a description",
+      "suggestions" => "this is a suggestions",
+      "strengths" => "this is a strengths",
+      "weakness" => "this is a weakness",
+      "post_id" => "a717fdb0-d334-4c4e-96d5-2ab58a0e8c70",
+      "user_id" => "8fc5d8bc-75e4-47a3-b412-b8cd17f5701a"
+    }
+  end
+
+  def review_factory do
+    %Review{
+      id: "3beb6a91-1580-455a-b377-13930f08565d",
+      description: "this is a description",
+      suggestions: "this is a suggestions",
+      strengths: "this is a strengths",
+      weakness: "this is a weakness",
+      post_id: "a717fdb0-d334-4c4e-96d5-2ab58a0e8c70",
+      user_id: "8fc5d8bc-75e4-47a3-b412-b8cd17f5701a"
     }
   end
 
@@ -53,6 +78,17 @@ defmodule ReviewIt.Factory do
       password_hash:
         "$pbkdf2-sha512$160000$yRB9lvY8YZP08PbN4tCYKw$ISrRoQ9aZszXA2I5.Lo3mA7y7fVHdxRh268L/kpXZ7m.FWwADukvF8aJ/soTsSZZp92BnxY8NhAm1MhxUQWS0Q",
       is_expert: false
+    }
+  end
+
+  def user_expert_factory do
+    %User{
+      id: "8fc5d8bc-75e4-47a3-b412-b8cd17f5701a",
+      nickname: "Banana Expert",
+      email: "banana_expert@mail.com",
+      password_hash:
+        "$pbkdf2-sha512$160000$yRB9lvY8YZP08PbN4tCYKw$ISrRoQ9aZszXA2I5.Lo3mA7y7fVHdxRh268L/kpXZ7m.FWwADukvF8aJ/soTsSZZp92BnxY8NhAm1MhxUQWS0Q",
+      is_expert: true
     }
   end
 
