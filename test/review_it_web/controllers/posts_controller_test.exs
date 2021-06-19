@@ -584,4 +584,47 @@ defmodule ReviewItWeb.PostsControllerTest do
              } = response
     end
   end
+
+  describe "show/2" do
+    test "when post exists, returns the post", %{conn: conn} do
+      # Arrange
+      insert(:user, %{id: "f9b153f9-7bd8-4957-820f-f1d6570ec24e", email: "creator@mail.com"})
+      %{id: id} = insert(:post)
+
+      # Act
+      response =
+        conn
+        |> get(Routes.posts_path(conn, :show, id))
+        |> json_response(:ok)
+
+      # Assert
+      assert %{
+               "post" => %{
+                 "code_url" => "www.codehub.com/12345ds2",
+                 "creator_id" => _creator_id,
+                 "description" =>
+                   "This code is for the web app XPQTA and it is supposed to bring the RPD foward.",
+                 "id" => _id,
+                 "inserted_at" => _inserted_at,
+                 "star_review_id" => nil,
+                 "title" => "Please review the Business logic on Module XPTO"
+               }
+             } = response
+    end
+
+    test "when post not found, returns an error", %{conn: conn} do
+      # Arrange
+      id = "f9b153f9-7bd8-4957-820f-f1d6570ec24e"
+
+      # Act
+      response =
+        conn
+        |> get(Routes.posts_path(conn, :show, id))
+        |> json_response(:not_found)
+
+      # Assert
+      expected_response = %{"error" => "Post not found"}
+      assert expected_response == response
+    end
+  end
 end

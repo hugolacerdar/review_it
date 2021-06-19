@@ -27,4 +27,12 @@ defmodule ReviewItWeb.PostsController do
       |> render("index.json", result: result)
     end
   end
+
+  def show(conn, %{"id" => id}) do
+    with {:ok, %Post{} = post} <- ReviewIt.get_post_by_id(id) do
+      conn
+      |> put_status(:ok)
+      |> render("post.json", post: post)
+    end
+  end
 end
