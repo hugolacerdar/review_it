@@ -3,7 +3,7 @@ defmodule ReviewIt.Factory do
 
   alias Plug.Upload
   alias ReviewIt.Imgbb.Client.Response
-  alias ReviewIt.{Post, Rank, Review, Technology, User}
+  alias ReviewIt.{Post, Rank, Review, Technology, Stat, User}
 
   def user_params_factory do
     %{
@@ -78,6 +78,14 @@ defmodule ReviewIt.Factory do
         "This code is for the web app XPQTA and it is supposed to bring the RPD fowars",
       "title" => "Please review the Business logic on Module XPTO",
       "technologies" => ["7df1040f-3644-4142-a2d6-20c6b0c4ab90"]
+    }
+  end
+
+  def stat_factory do
+    %Stat{
+      technology_id: "7df1040f-3644-4142-a2d6-20c6b0c4ab90",
+      user_id: "8fc5d8bc-75e4-47a3-b412-b8cd17f5701a",
+      reviews: 1
     }
   end
 
