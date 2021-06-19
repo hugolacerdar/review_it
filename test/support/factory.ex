@@ -3,7 +3,7 @@ defmodule ReviewIt.Factory do
 
   alias Plug.Upload
   alias ReviewIt.Imgbb.Client.Response
-  alias ReviewIt.{Post, Review, Technology, User}
+  alias ReviewIt.{Post, Rank, Review, Technology, User}
 
   def user_params_factory do
     %{
@@ -19,6 +19,17 @@ defmodule ReviewIt.Factory do
     %{
       "email" => "banana@mail.com",
       "password" => "banana123"
+    }
+  end
+
+  def rank_factory do
+    %{month: month, year: year} = DateTime.utc_now()
+
+    %Rank{
+      month: month,
+      year: year,
+      score: 10,
+      user_id: "8fc5d8bc-75e4-47a3-b412-b8cd17f5701a"
     }
   end
 
