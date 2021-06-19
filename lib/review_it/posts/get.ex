@@ -24,7 +24,7 @@ defmodule ReviewIt.Posts.Get do
     result =
       query
       |> Repo.all()
-      |> Repo.preload([:author, :technologies, :star_review])
+      |> Repo.preload([:author, :technologies, :star_review, :reviews])
 
     {:ok, result}
   end
