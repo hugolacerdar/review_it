@@ -26,7 +26,7 @@ defmodule ReviewIt.Reviews.Create do
     AddUserScore.call(repo, :review, user)
   end
 
-  def handle_rank_score(repo, %{user: %User{id: user_id}}) do
+  defp handle_rank_score(repo, %{user: %User{id: user_id}}) do
     AddRankScore.call(repo, :review, user_id)
   end
 
