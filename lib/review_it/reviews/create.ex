@@ -1,22 +1,33 @@
 defmodule ReviewIt.Reviews.Create do
   alias Ecto.Changeset
   alias Ecto.Multi
-  alias ReviewIt.{Error, Repo, Review}
-  alias ReviewIt.Users.AddScore
+  alias ReviewIt.{Error, Repo, Review, User}
+  alias ReviewIt.Ranks.AddScore, as: AddRankScore
+  alias ReviewIt.Users.AddScore, as: AddUserScore
 
   def call(params) do
     changeset = Review.changeset(params)
 
     Multi.new()
     |> Multi.insert(:review, changeset)
-    |> Multi.run(:score, &handle_score/2)
+    |> Multi.run(:user, &handle_user_preload/2)
+    |> Multi.run(:user_score, &handle_user_score/2)
+    |> Multi.run(:rank_score, &handle_rank_score/2)
     |> Repo.transaction()
     |> handle_transaction()
   end
 
-  defp handle_score(repo, %{review: review}) do
-    %Review{user: user} = Repo.preload(review, :user)
-    AddScore.call(repo, :review, user)
+  defp handle_user_preload(repo, %{review: review}) do
+    %Review{user: user} = repo.preload(review, :user)
+    {:ok, user}
+  end
+
+  defp handle_user_score(repo, %{user: user}) do
+    AddUserScore.call(repo, :review, user)
+  end
+
+  def handle_rank_score(repo, %{user: %User{id: user_id}}) do
+    AddRankScore.call(repo, :review, user_id)
   end
 
   defp handle_transaction({:ok, %{review: review}}), do: {:ok, review}
