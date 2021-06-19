@@ -1,7 +1,7 @@
 defmodule ReviewIt.Users.AddScore do
   alias ReviewIt.{Repo, User}
 
-  @valid_actions [:review, :start]
+  @valid_actions [:review, :star]
 
   def call(action, %User{} = user) when action in @valid_actions do
     call(Repo, action, user)

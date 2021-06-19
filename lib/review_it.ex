@@ -20,6 +20,7 @@ defmodule ReviewIt do
   defdelegate create_post(params), to: PostCreate, as: :call
   defdelegate get_post_by_creator_id(id), to: PostGet, as: :by_creator_id
   defdelegate get_all_posts(params), to: PostGet, as: :all
+  defdelegate get_post_by_id(id), to: PostGet, as: :by_id
 
   defdelegate create_review(params), to: ReviewCreate, as: :call
 

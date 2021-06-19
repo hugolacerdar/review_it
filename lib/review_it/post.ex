@@ -3,7 +3,7 @@ defmodule ReviewIt.Post do
 
   import Ecto.Changeset
 
-  alias ReviewIt.{Technology, User}
+  alias ReviewIt.{Review, Technology, User}
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -23,7 +23,8 @@ defmodule ReviewIt.Post do
              :inserted_at,
              :author,
              :technologies,
-             :star_review
+             :star_review,
+             :reviews
            ]}
 
   schema "posts" do
@@ -33,6 +34,8 @@ defmodule ReviewIt.Post do
 
     belongs_to(:author, User, foreign_key: :creator_id)
     belongs_to(:star_review, User, foreign_key: :star_review_id)
+
+    has_many(:reviews, Review)
 
     many_to_many(:technologies, Technology, join_through: "posts_technologies")
 
