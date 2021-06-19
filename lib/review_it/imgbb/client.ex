@@ -17,7 +17,9 @@ defmodule ReviewIt.Imgbb.Client do
 
   @impl true
   def upload(
+        # coveralls-ignore-start
         url \\ @base_url,
+        # coveralls-ignore-stop
         %Upload{content_type: content_type, filename: filename, path: path}
       ) do
     Multipart.new()
