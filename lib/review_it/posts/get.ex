@@ -1,6 +1,6 @@
 defmodule ReviewIt.Posts.Get do
   import Ecto.Query
-  alias ReviewIt.{Post, Repo}
+  alias ReviewIt.{Post, Error, Repo}
   alias ReviewIt.Posts.SearchHelper
 
   @default_params %{
@@ -27,5 +27,12 @@ defmodule ReviewIt.Posts.Get do
       |> Repo.preload([:author, :technologies, :star_review, :reviews])
 
     {:ok, result}
+  end
+
+  def by_id(id) do
+    case Repo.get(Post, id) do
+      nil -> {:error, Error.build(:not_found, "Post not found")}
+      post -> {:ok, Repo.preload(post, [:author, :technologies, :star_review, :reviews])}
+    end
   end
 end
