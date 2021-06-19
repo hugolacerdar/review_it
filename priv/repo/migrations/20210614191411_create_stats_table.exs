@@ -5,7 +5,7 @@ defmodule ReviewIt.Repo.Migrations.CreateStatsTable do
     create table(:stats) do
       add :user_id, references(:users, on_delete: :delete_all)
       add :technology_id, references(:technologies, on_delete: :delete_all)
-      add :reviews, :integer
+      add :reviews, :integer, default: 1
 
       timestamps()
     end
