@@ -4,7 +4,7 @@ defmodule ReviewIt.Stats.CreateTest do
   import ReviewIt.Factory
 
   alias ReviewIt.Stats.Create
-  alias ReviewIt.{Technology, Repo, Stat, User}
+  alias ReviewIt.{Repo, Stat, Technology, User}
 
   describe "call/1" do
     setup do

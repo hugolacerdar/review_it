@@ -1,7 +1,7 @@
 defmodule ReviewIt.Ranks.Get do
   import Ecto.Query
 
-  alias ReviewIt.{Error, Repo, Rank}
+  alias ReviewIt.{Error, Rank, Repo}
 
   @default_limit 10
 

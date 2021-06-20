@@ -1,8 +1,8 @@
 defmodule ReviewItWeb.ReviewsController do
   use ReviewItWeb, :controller
 
-  alias ReviewItWeb.FallbackController
   alias ReviewItWeb.Auth.Guardian.Plug, as: GuardianPlug
+  alias ReviewItWeb.FallbackController
 
   action_fallback FallbackController
 

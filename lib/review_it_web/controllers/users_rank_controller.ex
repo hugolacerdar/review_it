@@ -2,8 +2,8 @@ defmodule ReviewItWeb.UsersRankController do
   use ReviewItWeb, :controller
 
   alias ReviewItWeb.FallbackController
-  alias ReviewItWeb.UsersRankValidator
   alias ReviewItWeb.RanksView
+  alias ReviewItWeb.UsersRankValidator
 
   action_fallback FallbackController
 
