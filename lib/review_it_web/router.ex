@@ -33,6 +33,7 @@ defmodule ReviewItWeb.Router do
     get "/technologies", TechnologiesController, :index
     get "/posts", PostsController, :index
     get "/posts/:id", PostsController, :show
+    get "/ranks", RanksController, :index
     post "/files", FilesController, :create
     post "/sessions", SessionsController, :create
     post "/users", UsersController, :create
