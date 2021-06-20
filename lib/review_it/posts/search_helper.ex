@@ -12,7 +12,7 @@ defmodule ReviewIt.Posts.SearchHelper do
       }) do
     query =
       Post
-      |> preload([p], [:author, :star_review, [reviews: :user]])
+      |> preload([p], [:author, [star_review: :user], [reviews: :user]])
       |> technologies?(technologies)
       |> solved?(solved)
       |> search_string?(search_string)

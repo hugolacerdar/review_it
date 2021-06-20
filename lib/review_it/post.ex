@@ -33,7 +33,7 @@ defmodule ReviewIt.Post do
     field(:code_url, :string)
 
     belongs_to(:author, User, foreign_key: :creator_id)
-    belongs_to(:star_review, User, foreign_key: :star_review_id)
+    belongs_to(:star_review, Review, foreign_key: :star_review_id)
 
     has_many(:reviews, Review)
 
