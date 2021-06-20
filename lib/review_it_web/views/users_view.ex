@@ -10,5 +10,21 @@ defmodule ReviewItWeb.UsersView do
     }
   end
 
-  def render("user.json", %{user: %User{} = user}), do: %{user: user}
+  def render("user.json", %{user: %User{} = user}) do
+    %{
+      user: %{
+        id: user.id,
+        nickname: user.nickname,
+        email: user.email,
+        is_expert: user.is_expert,
+        picture_url: user.picture_url,
+        github_url: user.github_url,
+        linkedin_url: user.linkedin_url,
+        score: user.score,
+        inserted_at: user.inserted_at,
+        stats: user.stats,
+        posts_amount: user.posts_amount
+      }
+    }
+  end
 end
