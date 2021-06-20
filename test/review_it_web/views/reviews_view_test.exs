@@ -28,4 +28,25 @@ defmodule ReviewItWeb.ReviewsViewTest do
              }
            } = response
   end
+
+  test "renders review.json" do
+    # Arrange
+    review = build(:review)
+
+    # Act
+    response = render(ReviewsView, "review.json", review: review)
+
+    # Assert
+    assert %{
+             review: %Review{
+               description: "this is a description",
+               id: _id,
+               post_id: _post_id,
+               strengths: "this is a strengths",
+               suggestions: "this is a suggestions",
+               user_id: _user_id,
+               weakness: "this is a weakness"
+             }
+           } = response
+  end
 end

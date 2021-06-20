@@ -9,4 +9,10 @@ defmodule ReviewItWeb.ReviewsView do
       review: review
     }
   end
+
+  def render("review.json", %{review: %Review{} = review}) do
+    %{
+      review: review
+    }
+  end
 end
