@@ -18,8 +18,6 @@ defmodule ReviewItWeb.Router do
     pipe_through [:api, :auth]
 
     post "/posts", PostsController, :create
-
-    get "/users/:id/posts", PostCreatorsController, :index
   end
 
   scope "/api", ReviewItWeb do
@@ -38,6 +36,7 @@ defmodule ReviewItWeb.Router do
     post "/sessions", SessionsController, :create
     post "/users", UsersController, :create
     get "/users/:id", UsersController, :show
+    get "/users/:id/posts", PostCreatorsController, :index
   end
 
   # Enables LiveDashboard only for development
