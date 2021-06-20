@@ -27,6 +27,7 @@ defmodule ReviewIt.Review do
              :weakness,
              :post_id,
              :user_id,
+             :user,
              :inserted_at
            ]}
 

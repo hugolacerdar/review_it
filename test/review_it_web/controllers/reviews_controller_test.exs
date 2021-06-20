@@ -18,7 +18,7 @@ defmodule ReviewItWeb.ReviewsControllerTest do
       {:ok, conn: conn}
     end
 
-    test "When all params are valid, returns the user", %{conn: conn} do
+    test "When all params are valid, returns the review", %{conn: conn} do
       # Arrange
       params = build(:review_params)
 

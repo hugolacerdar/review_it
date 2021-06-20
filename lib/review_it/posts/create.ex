@@ -20,7 +20,7 @@ defmodule ReviewIt.Posts.Create do
   end
 
   defp handle_insert({:ok, %Post{} = post}) do
-    post = Repo.preload(post, [:author, :technologies, :star_review, :reviews])
+    post = Repo.preload(post, [:author, :technologies, :star_review, [reviews: :user]])
 
     {:ok, post}
   end

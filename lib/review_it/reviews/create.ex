@@ -60,7 +60,9 @@ defmodule ReviewIt.Reviews.Create do
     end
   end
 
-  defp handle_transaction({:ok, %{review: review}}), do: {:ok, review}
+  defp handle_transaction({:ok, %{review: review}}) do
+    {:ok, Repo.preload(review, :user)}
+  end
 
   defp handle_transaction({:error, _step, %Changeset{} = changeset, _changes}) do
     {:error, Error.build_changeset_error(changeset)}

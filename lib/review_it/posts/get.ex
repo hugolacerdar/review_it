@@ -24,7 +24,7 @@ defmodule ReviewIt.Posts.Get do
     result =
       query
       |> Repo.all()
-      |> Repo.preload([:author, :technologies, :star_review, :reviews])
+      |> Repo.preload([:author, :technologies, :star_review, [reviews: :user]])
 
     {:ok, result}
   end
@@ -32,7 +32,7 @@ defmodule ReviewIt.Posts.Get do
   def by_id(id) do
     case Repo.get(Post, id) do
       nil -> {:error, Error.build(:not_found, "Post not found")}
-      post -> {:ok, Repo.preload(post, [:author, :technologies, :star_review, :reviews])}
+      post -> {:ok, Repo.preload(post, [:author, :technologies, :star_review, [reviews: :user]])}
     end
   end
 end
