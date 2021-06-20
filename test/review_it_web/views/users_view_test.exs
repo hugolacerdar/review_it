@@ -38,12 +38,18 @@ defmodule ReviewItWeb.UsersViewTest do
 
     # Assert
     assert %{
-             user: %User{
+             user: %{
                email: "banana@mail.com",
                id: _id,
                is_expert: false,
                nickname: "Banana",
-               picture_url: nil
+               picture_url: nil,
+               github_url: nil,
+               inserted_at: nil,
+               linkedin_url: nil,
+               posts_amount: nil,
+               score: 0,
+               stats: _
              }
            } = response
   end

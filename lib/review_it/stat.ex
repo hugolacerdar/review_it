@@ -11,7 +11,7 @@ defmodule ReviewIt.Stat do
 
   @required_params [:technology_id, :user_id]
 
-  @derive {Jason.Encoder, only: [:id, :reviews, :technology_id, :user_id]}
+  @derive {Jason.Encoder, only: [:id, :reviews, :technology, :technology_id, :user_id]}
 
   schema "stats" do
     field :reviews, :integer, default: 1
