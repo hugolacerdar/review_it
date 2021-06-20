@@ -48,6 +48,8 @@ defmodule ReviewIt.Post do
     |> validate_required(@required_params)
     |> validate_length(:title, min: 10, max: 100)
     |> validate_length(:description, min: 20, max: 320)
+    |> assoc_constraint(:author)
+    |> assoc_constraint(:star_review)
     |> put_assoc(:technologies, technologies)
   end
 end
