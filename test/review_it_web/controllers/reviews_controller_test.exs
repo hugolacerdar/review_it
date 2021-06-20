@@ -63,4 +63,56 @@ defmodule ReviewItWeb.ReviewsControllerTest do
       assert expected_response == response
     end
   end
+
+  describe "show/2" do
+    setup %{conn: conn} do
+      insert(:user_expert)
+      user_id = "f9b153f9-7bd8-4957-820f-f1d6570ec24e"
+      insert(:user, %{id: user_id, email: "creator@mail.com"})
+      insert(:post)
+
+      %{conn: conn}
+    end
+
+    test "when review exists, returns the review", %{conn: conn} do
+      # Arrange
+      %{id: review_id} = insert(:review)
+
+      # Act
+      response =
+        conn
+        |> get(Routes.reviews_path(conn, :show, review_id))
+        |> json_response(:ok)
+
+      # Assert
+      assert %{
+               "review" => %{
+                 "description" => "this is a description",
+                 "id" => _,
+                 "inserted_at" => _,
+                 "post_id" => _,
+                 "strengths" => "this is a strengths",
+                 "suggestions" => "this is a suggestions",
+                 "user" => _,
+                 "user_id" => _,
+                 "weakness" => "this is a weakness"
+               }
+             } = response
+    end
+
+    test "when review not exists, returns an error", %{conn: conn} do
+      # Arrange
+      review_id = "a717fdb0-d334-4c4e-96d5-2ab58a0e8c70"
+
+      # Act
+      response =
+        conn
+        |> get(Routes.reviews_path(conn, :show, review_id))
+        |> json_response(:not_found)
+
+      # Assert
+      expected_response = %{"error" => "Review not found"}
+      assert expected_response == response
+    end
+  end
 end

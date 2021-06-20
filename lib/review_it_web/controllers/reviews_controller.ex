@@ -20,4 +20,12 @@ defmodule ReviewItWeb.ReviewsController do
       |> render("create.json", review: review)
     end
   end
+
+  def show(conn, %{"id" => id}) do
+    with {:ok, review} <- ReviewIt.get_review_by_id(id) do
+      conn
+      |> put_status(:ok)
+      |> render("review.json", review: review)
+    end
+  end
 end
