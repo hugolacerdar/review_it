@@ -78,8 +78,8 @@ defmodule ReviewIt.MixProject do
 
   defp ecto_setup do
     case Mix.env() do
-      :test -> ["ecto.create", "ecto.migrate"]
       :dev -> ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"]
+      _ -> ["ecto.create", "ecto.migrate"]
     end
   end
 end
