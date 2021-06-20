@@ -4,6 +4,7 @@ defmodule ReviewIt.User do
   import Ecto.Changeset
 
   alias Ecto.Changeset
+  alias ReviewIt.Technology
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @timestamps_opts [type: :utc_datetime]
@@ -44,6 +45,8 @@ defmodule ReviewIt.User do
     field :github_url, :string
     field :linkedin_url, :string
     field :score, :integer, default: 0
+
+    many_to_many :technologies, Technology, join_through: "users_technologies"
 
     timestamps()
   end

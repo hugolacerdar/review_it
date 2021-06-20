@@ -11,12 +11,13 @@ defmodule ReviewIt.Rank do
 
   @required_params [:user_id, :month, :year, :score]
 
-  @derive {Jason.Encoder, only: [:id, :user_id, :month, :year, :score, :user]}
+  @derive {Jason.Encoder, only: [:id, :user_id, :month, :year, :score, :user, :position]}
 
   schema "ranks" do
     field :month, :integer
     field :year, :integer
     field :score, :integer, default: 0
+    field :position, :integer, virtual: true
 
     belongs_to :user, User
 

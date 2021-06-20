@@ -18,6 +18,7 @@ defmodule ReviewItWeb.Router do
     pipe_through [:api, :auth]
 
     post "/posts", PostsController, :create
+    post "/reviews/:id/star", ReviewsStarController, :create
   end
 
   scope "/api", ReviewItWeb do
@@ -32,10 +33,12 @@ defmodule ReviewItWeb.Router do
     get "/technologies", TechnologiesController, :index
     get "/posts", PostsController, :index
     get "/posts/:id", PostsController, :show
+    get "/ranks", RanksController, :index
     post "/files", FilesController, :create
     post "/sessions", SessionsController, :create
     post "/users", UsersController, :create
     get "/users/:id", UsersController, :show
+    get "/users/:id/rank", UsersRankController, :show
     get "/users/:id/posts", PostCreatorsController, :index
   end
 
