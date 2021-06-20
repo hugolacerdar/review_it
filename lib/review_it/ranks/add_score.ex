@@ -1,5 +1,5 @@
 defmodule ReviewIt.Ranks.AddScore do
-  alias ReviewIt.{Repo, Rank}
+  alias ReviewIt.{Rank, Repo}
 
   @valid_actions [:review, :star]
 

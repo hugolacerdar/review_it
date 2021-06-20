@@ -16,6 +16,8 @@ defmodule ReviewIt.DataCase do
 
   use ExUnit.CaseTemplate
 
+  alias Ecto.Adapters.SQL.Sandbox
+
   using do
     quote do
       alias ReviewIt.Repo
@@ -28,10 +30,10 @@ defmodule ReviewIt.DataCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(ReviewIt.Repo)
+    :ok = Sandbox.checkout(ReviewIt.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(ReviewIt.Repo, {:shared, self()})
+      Sandbox.mode(ReviewIt.Repo, {:shared, self()})
     end
 
     :ok

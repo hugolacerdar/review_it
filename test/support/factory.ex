@@ -3,7 +3,7 @@ defmodule ReviewIt.Factory do
 
   alias Plug.Upload
   alias ReviewIt.Imgbb.Client.Response
-  alias ReviewIt.{Post, Rank, Review, Technology, Stat, User}
+  alias ReviewIt.{Post, Rank, Review, Stat, Technology, User}
 
   def user_params_factory do
     %{

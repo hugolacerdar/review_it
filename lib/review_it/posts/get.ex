@@ -1,6 +1,6 @@
 defmodule ReviewIt.Posts.Get do
   import Ecto.Query
-  alias ReviewIt.{Post, Error, Repo}
+  alias ReviewIt.{Error, Post, Repo}
   alias ReviewIt.Posts.SearchHelper
 
   @default_params %{

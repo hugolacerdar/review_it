@@ -3,7 +3,7 @@ defmodule ReviewIt.Reviews.StarTest do
 
   import ReviewIt.Factory
 
-  alias ReviewIt.{Error, Review, Post}
+  alias ReviewIt.{Error, Post, Review}
   alias ReviewIt.Reviews.Star
 
   describe "call/1" do
