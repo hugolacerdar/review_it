@@ -25,6 +25,7 @@ defmodule ReviewIt do
   defdelegate get_post_by_id(id), to: PostGet, as: :by_id
 
   defdelegate get_ranks_by_period(params), to: RankGet, as: :by_period
+  defdelegate get_ranks_by_user_id(params), to: RankGet, as: :by_user_id
 
   defdelegate create_review(params), to: ReviewCreate, as: :call
   defdelegate star_review(review_id, user_id), to: ReviewStar, as: :call
