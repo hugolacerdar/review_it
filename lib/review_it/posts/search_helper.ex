@@ -12,11 +12,12 @@ defmodule ReviewIt.Posts.SearchHelper do
       }) do
     query =
       Post
+      |> distinct(true)
+      |> order_by([p], desc: p.inserted_at)
       |> preload([p], [:author, [star_review: :user], [reviews: :user]])
       |> technologies?(technologies)
       |> solved?(solved)
       |> search_string?(search_string)
-      |> distinct([p], p.id)
       |> paginate(page, size)
 
     Repo.all(query) |> Repo.preload(:technologies)
